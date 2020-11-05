@@ -1,0 +1,34 @@
+<!--app/templates/base2.html--><meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+{%block navbar%}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+  <div class="navbar-nav">
+    <a class="nav-item nav-link {%if page == 1%} active {%endif%}" href="/admin1/staff">Quản lý nhóm sản phẩm</a>
+    <a class="nav-item nav-link {%if page == 2%} active {%endif%}" href="/admin1/list_product">Quản lý sản phẩm</a>
+    <a class="nav-item nav-link {%if page == 3%} active {%endif%}" href="/admin1/list_order">Quản lý đơn hàng</a>
+  </div>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
+        <img class="rounded-circle" style="width:60px" src="https://raw.githubusercontent.com/pytutorial/html_samples/master/css_bootstrap/user.svg">
+      </a>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="/admin1/information_user/{{user.id}}"> 
+          
+          Thông tin tài khoản
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/accounts/logout">
+                Đăng xuất
+        </a>
+      </div>
+    </li>
+  </ul>
+</nav>
+{%endblock%}
+{%block content%}
+{%endblock%}

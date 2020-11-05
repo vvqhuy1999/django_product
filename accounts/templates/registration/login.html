@@ -1,0 +1,30 @@
+<!--accounts/templates/registration/login.html-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    .login-form{
+        max-width: 400px;
+        margin: 100 auto 0 auto;
+        border: solid 1px #DDD;
+        padding: 20px;
+    }
+</style>
+<div class="login-form">
+    <h3>Đăng nhập</h3>
+    <form method="POST">
+        {%csrf_token%}
+        <div class="form-group">
+            <label>Tên tài khoản :</label>
+            <input class="form-control" name='username' value="{{ form.username.value|default:'' }}">
+            <div style="color: red;">{{form.username.errors}}</div>
+        </div>
+        <div class="form-group">
+            <label>Mật khẩu :</label>
+            <input class="form-control" type="password" name="password">
+            <div style="color: red;">{{form.password.errors}}</div>
+        </div>
+        <div style="color: red;">{{ form.non_field_errors }}</div>
+        <button type="submit" class="btn btn-primary">Đăng nhập</button>
+        <a href="/accounts/signup" class="btn btn-secondary">Đăng ký</a>
+    </form>
+</div>
+

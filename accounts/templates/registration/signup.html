@@ -1,0 +1,74 @@
+<!--accounts/templates/registration/signup.html-->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<style>
+    .signup-form{
+        max-width: 600px;
+        margin: 40 auto 0 auto;
+        border: solid 1px #DDD;
+        padding: 20px;
+    }
+</style>
+<div class="signup-form">
+    <h3>Signup</h3>
+    <form method="POST">{%csrf_token%}
+        <table class="table">
+            <tr>
+                <td>
+                    <label>Ho ten:</label>
+                </td>
+                <td>
+                    <input class="form-control" type="text" name="name" value="{{form.name.value|default:''}}">
+                    <div style="color: red;">{{form.name.errors}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email:</label>
+                </td>
+                <td>
+                    <input class="form-control" type="email" name="email" value="{{form.email.value|default:''}}">
+                    <div style="color: red;">{{form.email.errors}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>SĐT</label>
+                </td>
+                <td>
+                    <input class="form-control" type="number" name="phone" value="{{form.phone.value|default:''}}">
+                    <div style="color: red;">{{form.phone.errors}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Tai khoan :</label>
+                </td>
+                <td>
+                    <input class="form-control" name="username"value="{{form.username.value|default:''}}">
+                    <div style="color: red;">{{form.username.errors}}</div>                   
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Mat khau :</label>
+                </td>
+                <td>
+                    <input class="form-control" type="password" name="password1">
+                    <div style="color: red;">{{form.password1.errors}}</div>                    
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Xac thuc mat khau :</label>
+                </td>
+                <td>
+                    <input class="form-control"type="password" name="password2">
+                    <div style="color: red;">{{form.password2.errors}}</div>
+                </td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-primary">Dang ky</button>
+        <div style="color: red;">{{ form.non_field_errors }}</div>
+    </form>
+</div>
+

@@ -1,0 +1,43 @@
+<!--admin1/templates/category/list.html-->
+{%extends "../base.html" %}
+{%block navbar%}
+    {%with page=1%}
+        {{block.super}}
+    {%endwith%}
+{%endblock%}
+{%block content %}
+<div class="container pt-3">
+    <table class="table table-bordered">
+        <thead>
+            <tr class="text-center">
+                <th style="width: 5%;">#</th>
+                <th style="width: 35%;">Mã</th>
+                <th style="width: 40%;">Tên</th>
+                <th style="width: 20%;"></th>
+            </tr>
+        </thead>    
+        <tbody>
+            {%for c in categoryList %}
+            <tr class="text-center">
+                <td>{{forloop.counter}}</td>
+                <td>{{c.code}}</td>
+                <td>{{c.name}}</td>
+                <td>
+                    <a class="btn btn-sm btn-secondary" href="{% url 'update-category' c.id %}">Chỉnh sửa</a>
+                    <a class="btn btn-sm btn-danger" href="javascript:deleteCategory({{c.id}})">Xóa</a>
+                </td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+    <a href="{% url 'create-category' %}" class="btn btn-primary">Thêm nhóm sản phẩm</a>
+</div>
+
+<script>
+    function deleteCategory(id){
+        if(confirm("Bạn có muốn xóa ?")){
+            location.href = '/admin1/delete_category/' +id;
+        }
+    }
+</script>
+{%endblock%}

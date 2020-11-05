@@ -1,0 +1,25 @@
+<!--admin1/templates/category/form.html-->
+{%extends "../base.html" %}
+{%block navbar%}
+    {%with page=1%}
+        {{block.super}}
+    {%endwith%}
+{%endblock%}
+{%block content %}
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<div class="container pt-3">
+    <h3>Thông tin nhóm sản phẩm</h3>
+    <form method="POST" novalidate>
+        {%csrf_token%}
+        <table class="table table-form">{{form}}</table>
+        <button class="btn btn-primary" type="submit">Lưu lại</button>
+        <a class="btn btn-secondary" href="/admin1/staff">Quay lại</a>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $('.table-form input').addClass('form-control');
+    });
+</script>
+{%endblock%}

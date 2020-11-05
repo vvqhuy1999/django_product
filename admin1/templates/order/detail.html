@@ -1,0 +1,65 @@
+{%extends "../base.html" %}
+{%block navbar%}
+    {%with page=3%}
+        {{block.super}}
+    {%endwith%}
+{%endblock%}
+{%block content %}
+<div class="container">
+    <h3>Thông tin đơn hàng</h3>
+
+    <table class="table">
+        <tr>
+            <th>Sản phẩm :</th>
+            <td>{{ order.product.name}}</td>
+        </tr>
+        <tr>
+            <th>Số lượng :</th>
+            <td>{{ order.qty }}</td>
+        </tr>
+        <tr>
+            <th>Đơn giá :</th>
+            <td>{{ order.priceUnit}}</td>
+        </tr>
+        <tr>
+            <th>Thanh toán:</th>
+            <td>{{ order.priceSum}}</td>
+        </tr>
+        <tr>
+            <th>Người mua hàng :</th>
+            <td>{{ order.fullname }}</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại người mua hàng :</th>
+            <td>{{ order.phone }}</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ người mua hàng :</th>
+            <td>{{ order.address }}</td>
+        </tr>
+        <tr>
+            <th>Ngày đặt hàng :</th>
+            <td>{{ order.dateOrder|date:"d/m/Y H:i:s" }}</td>
+        </tr>
+        {% if order.status == 2 %}
+            <tr>
+                <th>Ngày nhận hàng:</th>  <td>{order.deliverDate}</td>
+            </tr>
+        {%endif%}
+        <tr>
+            <th>Trạng thái :</th>
+            <td>
+                {% if order.status == 0 %} Đang chờ nhận hàng {%endif%}
+                {% if order.status == 1 %} Đã nhận hàng {%endif%}
+                {% if order.status == 2 %} Đã hủy {%endif%}
+            </td>
+        </tr>
+    </table>
+    {% if order.status == 0 %}
+        <a class="btn btn-sm btn-primary" href="/admin1/confirm_order/{{order.id}}">
+            Xác nhận hàng đã giao
+        </a>
+        <a href="/admin1/cancel_order/{{order.id}}" class="btn btn-sm btn-danger">Hủy đơn hàng</a>
+    {% endif %}
+</div>
+{%endblock%}

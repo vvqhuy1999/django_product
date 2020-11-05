@@ -1,0 +1,50 @@
+{%extends "../base.html" %}
+{%block navbar%}
+    {%with page=3%}
+        {{block.super}}
+    {%endwith%}
+{%endblock%}
+{%block content %}
+<div class="container pt-3">
+    <form> {%csrf_token%}
+        <input name="name" value="{{name}}" class="form-control" placeholder="Nhập tên sản phẩm để tìm">
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Sản phẩm</th>
+                <th>Người mua</th>
+                <th>Ngày đặt hàng</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for o in orderList%}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{o.product.name}}</td>
+                <td>{{o.fullname}}</td>
+                <td>{{o.dateOrder|date:"d/m/Y H:i:s"}}</td>
+                <td>
+                    {% if o.status == 0 %} Đang chờ nhận hàng {%endif%}
+                    {% if o.status == 1 %} <b style="color: green;">Đã nhận hàng </b> {%endif%}
+                    {% if o.status == 2 %} <b style="color: red;">Đã hủy</b>  {%endif%}
+                </td>
+                <td class="text-center ">
+                    <a class="btn btn-secondary" href="/admin1/view_order/{{o.id}}">
+                        Xem chi tiết
+                    </a>
+                </td>
+            </tr>
+            {%endfor%}
+            {%if not orderList%}
+                <tr>
+                    <td colspan="7">Không có sản phẩm nào</td>
+                </tr>
+            {%endif%}
+        </tbody>
+    </table>
+</div>
+{%endblock%}

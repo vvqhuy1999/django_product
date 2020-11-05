@@ -1,0 +1,92 @@
+<!-- admin1/templates/product/form.html -->
+{%extends "../base.html" %}
+{%block navbar%}
+    {%with page=2%}
+        {{block.super}}
+    {%endwith%}
+{%endblock%}
+{%block content %}
+<div class="container pt-3">
+    <form>  <!--{%csrf_token%}--> 
+        <div class="row">
+            <div class="col-3">
+                <label> &nbsp;</label>
+                <input name="name" value="{{name}}" class="form-control" placeholder="Nhập tên sản phẩm để tìm">
+            </div>
+            <div class="col-3">
+                <label>Nhóm sản phẩm:</label>
+                <select class="form-control" name="categoryId">
+                    <option value="">--Tất cả--</option>
+                    {%for c in categoryList%}
+                    <option {%if c.id == categoryId %} selected {% endif %} value="{{c.id}}">{{c.name}}</option>
+                    {%endfor%}
+                </select>
+            </div>
+            <div class="col-3">
+                <label>&nbsp;</label><br>
+                <button type="submit" class="btn btn-ms btn-primary">Tìm kiếm</button>
+            </div>
+        </div>    
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 5%;">#</th>
+                <th style="width: 12%;">Nhóm</th>
+                <th style="width: 12%;">Mã</th>
+                <th style="width: 15%;">Tên</th>
+                <th style="width: 12%;">Giá</th>
+                <th style="width: 25%;">Ảnh</th>
+                <th style="width: 18%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for p in productList%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{p.category.name}}</td>
+                    <td>{{p.code}}</td>
+                    <td>{{p.name}}</td>
+                    <td>{{p.price}}</td>
+                    <td><img src='/{{p.image}}' style="max-height: 200px;"></td>
+                    <td>
+                        <a href='{% url "update-product" p.id %}' class="btn btn-ms btn-secondary">Chỉnh sửa</a>
+                        <a href="javascript:deleteProduct({{p.id}})" class="btn btn-ms btn-danger">Xóa</a>
+                    </td>
+                </tr>
+            {%endfor%}
+            {%if not productList%}
+                <tr>
+                    <td colspan="7">Không có sản phẩm nào</td>
+                </tr>
+            {%endif%}
+        </tbody>
+    </table>
+    <a href='{% url "create-product" %}' class="btn btn-primary">Thêm sản phẩm</a>
+
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="?page=1&name={{name}}&categoryId={{categoryId}}">&laquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{prev_page}}&name={{name}}&categoryId={{categoryId}}">&lsaquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{next_page}}&name={{name}}&categoryId={{categoryId}}">&rsaquo;</a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{num_page}}&name={{name}}&categoryId={{categoryId}}">&raquo;</a>
+        </li>
+        
+    </ul>
+    <p class="text-right"><small>Trang {{page}}/{{num_page}}, trên tổng số {{total}} bản ghi</small></p>
+</div>
+
+<script>
+    function deleteProduct(id){
+        if(confirm("Bạn có muốn xóa ?")){
+            location.href= '/admin1/delete_product/'+id ;
+        }
+    }
+</script>
+{%endblock%}

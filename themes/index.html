@@ -1,0 +1,110 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<style>
+    .product-image {
+        width: 95%;
+    }
+
+    .price-title {
+        font-style: italic;
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .product-item,
+    .product-item:link,
+    .product-item:hover,
+    .product-item:visited {
+        text-decoration: none;
+        color: black;
+    }
+
+    .item-container {
+        position: relative;
+        height: 100%;
+        padding-bottom: 50px;
+    }
+
+    .item-info {
+        position: absolute;
+        bottom: 0px;
+        height: 50px;
+    }
+</style>
+<div>
+    <div class="bg-primary">
+        <div class="container">
+            <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Sản phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Liên hệ</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="container mt-5 mb-5">
+        <form>
+            <input name="name" class="form-control" placeholder="Nhập tên sản phẩm để tìm">
+        </form>
+        <ul class="list-unstyled row">
+            <li class="list-item col-sm-4 mt-3">
+                <div class='item-container'>
+                    <a href="product.html?id=1" class='product-item'>
+                        <img src="images/ACER_0001.jpg" class='product-image'>
+                        <div class="item-info">
+                            <div>
+                                <span class='product-name'>Acer 001</span>
+                            </div>
+                            <div>
+                                <span class='price-title'>Giá bán :</span> <span class='price'>6.500.000 ₫</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li class="list-item col-sm-4 mt-3">
+                <div class='item-container'>
+                    <a href="product.html?id=2" class='product-item'>
+                        <img src="images/ACER_0002.jpg" class='product-image'>
+                        <div class="item-info">
+                            <div>
+                                <span class='product-name'>Acer 002</span>
+                            </div>
+                            <div>
+                                <span class='price-title'>Giá bán :</span> <span class='price'>7.500.000 ₫ ₫</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+
+            <li class="list-item col-sm-4 mt-3">
+                <div class='item-container'>
+                    <a href="product.html?id=3" class='product-item'>
+                        <img src="images/ACER_0003.jpg" class='product-image'>
+                        <div class="item-info">
+                            <div>
+                                <span class='product-name'>Acer 003</span>
+                            </div>
+                            <div>
+                                <span class='price-title'>Giá bán :</span> <span class='price'>8.500.000 ₫ ₫</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
