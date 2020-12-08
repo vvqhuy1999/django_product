@@ -67,3 +67,6 @@ def orderProduct(request,pk):
 
 def thankYou(request):
     return render(request,'thank_you.html')
+
+def Contact(request):
+    return render(request,'contact.html')
