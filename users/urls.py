@@ -6,4 +6,5 @@ urlpatterns = [
     path('view_product/<pk>',viewProduct),
     path('order_product/<pk>',orderProduct),
     path('thank_you',thankYou),
+    path('contact',Contact),
 ]

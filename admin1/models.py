@@ -8,7 +8,7 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name='Loại hàng')
     code = models.CharField(max_length=30,unique=True, verbose_name='Mã')
     name = models.CharField(max_length=200,verbose_name='Tên')
     price = models.FloatField(verbose_name='Đơn giá')
